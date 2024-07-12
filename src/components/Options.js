@@ -1,4 +1,4 @@
-function Options({ question, dispatch, answer }) {
+function Options({ question, dispatch, answer, choice }) {
   const hasAnswered = answer !== null;
   return (
     <>
@@ -8,8 +8,8 @@ function Options({ question, dispatch, answer }) {
             className={`btn btn-option ${index === answer ? "answer" : ""} ${
               hasAnswered
                 ? index === question.correctOption
-                  ? "correct"
-                  : "wrong"
+                  ? `${choice}-correct`
+                  : `${choice}-wrong`
                 : ""
             }`}
             key={opt}

@@ -1,0 +1,99 @@
+{
+  "questions": [
+    {
+      "question": "Which programming language is Laravel built on?",
+      "options": ["Python", "JavaScript", "PHP", "Ruby"],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "What is the primary purpose of Laravel?",
+      "options": [
+        "Front-end development",
+        "Mobile app development",
+        "Web application development",
+        "Data analysis"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "Which command is used to create a new Laravel project?",
+      "options": [
+        "laravel create",
+        "laravel new",
+        "laravel init",
+        "laravel start"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What is Eloquent in Laravel?",
+      "options": [
+        "A templating engine",
+        "A routing system",
+        "An ORM",
+        "A caching system"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "How do you define a route in Laravel?",
+      "options": [
+        "Route::define()",
+        "Route::get()",
+        "Route::create()",
+        "Route::make()"
+      ],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "Which method is used to retrieve all records from a database table in Eloquent?",
+      "options": ["getAll()", "fetchAll()", "all()", "retrieve()"],
+      "correctOption": 2,
+      "points": 30
+    },
+    {
+      "question": "What is the purpose of middleware in Laravel?",
+      "options": [
+        "Handle HTTP requests",
+        "Define database schema",
+        "Provide authentication and authorization",
+        "Cache responses"
+      ],
+      "correctOption": 2,
+      "points": 20
+    },
+    {
+      "question": "How do you create a new migration in Laravel?",
+      "options": [
+        "php artisan make:migration",
+        "php artisan create:migration",
+        "php artisan new:migration",
+        "php artisan migrate:make"
+      ],
+      "correctOption": 0,
+      "points": 20
+    },
+    {
+      "question": "What is Blade in Laravel?",
+      "options": [
+        "A database library",
+        "A routing tool",
+        "A template engine",
+        "A testing tool"
+      ],
+      "correctOption": 2,
+      "points": 10
+    },
+    {
+      "question": "How do you access environment variables in Laravel?",
+      "options": ["getenv()", "env()", "Config::get()", "Setting::get()"],
+      "correctOption": 1,
+      "points": 30
+    }
+  ]
+}

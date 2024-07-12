@@ -36,6 +36,25 @@ body {
   justify-content: center;
 }
 
+.choices {
+  margin: 150px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 90%;
+  align-items: center;
+}
+
+.choice {
+  cursor: pointer;
+  border-radius: 20px;
+  padding: 15px;
+  transition: 0.3s ease;
+}
+.choice:hover {
+  background-color: #495057;
+}
+
 .main {
   width: 50rem;
 }
@@ -110,8 +129,16 @@ progress {
   background-color: var(--color-medium);
   border-radius: 100px;
 }
-::-webkit-progress-value {
+progress.React-progress::-webkit-progress-value {
   background-color: var(--color-theme);
+  border-radius: 100px;
+}
+progress.Angular-progress::-webkit-progress-value {
+  background-color: #ad1010;
+  border-radius: 100px;
+}
+progress.Laravel-progress::-webkit-progress-value {
+  background-color: #ff2d20;
   border-radius: 100px;
 }
 
@@ -156,15 +183,39 @@ progress {
   text-align: left;
 }
 
-.btn-option.correct {
+.btn-option.React-correct {
   background-color: var(--color-theme);
   border: 2px solid var(--color-theme);
   color: var(--color-light);
 }
-.btn-option.wrong {
+
+.btn-option.React-wrong {
   background-color: var(--color-accent);
   border: 2px solid var(--color-accent);
   color: var(--color-darkest);
+}
+
+.btn-option.Angular-correct {
+  background-color: #ad1010;
+  border: 2px solid #ad1010;
+  color: var(--color-light);
+}
+
+.btn-option.Angular-wrong {
+  background-color: #d4d4d4;
+  border: 2px solid #d4d4d4;
+  color: var(--color-darkest);
+}
+.btn-option.Laravel-correct {
+  background-color: #ff2d20;
+  border: 2px solid #ff2d20;
+  color: var(--color-light);
+}
+
+.btn-option.Laravel-wrong {
+  background-color: #864a9e;
+  border: 2px solid #864a9e;
+  color: #ffe8e8;
 }
 
 .answer {

@@ -1,7 +1,15 @@
-function Progress({ index, numQuestions, points, maxPossiblePoints, answer }) {
+function Progress({
+  index,
+  numQuestions,
+  points,
+  maxPossiblePoints,
+  answer,
+  choice,
+}) {
   return (
     <header className="progress">
       <progress
+        className={`${choice}-progress`}
         max={numQuestions}
         value={index + Number(answer !== null)}
       ></progress>

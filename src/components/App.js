@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Loader from "./Loader";
@@ -10,7 +10,13 @@ import Progress from "./Progress";
 import FinishScreen from "./FinishScreen";
 import Footer from "./Footer";
 import Timer from "./Timer";
+import ChoiceButton from "./ChoiceButton";
 
+const quizNames = [
+  { id: 8000, name: "React" },
+  { id: 8001, name: "Angular" },
+  { id: 8002, name: "Laravel" },
+];
 const initialState = {
   questions: [],
   // 'loading', 'error', 'ready', 'active', 'finished'
@@ -20,6 +26,8 @@ const initialState = {
   points: 0,
   highscore: 0,
   secondsRemaining: null,
+  choice: "",
+  choiceID: null,
 };
 const SECS_PER_QUESTION = 11;
 function reducer(state, action) {
@@ -62,6 +70,14 @@ function reducer(state, action) {
         secondsRemaining: state.secondsRemaining - 1,
         status: state.secondsRemaining === 0 ? "finish" : state.status,
       };
+    case "setChoice":
+      return {
+        ...state,
+        choice: action.payload.name,
+        choiceID: action.payload.id,
+      };
+    case "backToChoice":
+      return { ...initialState };
     default:
       throw new Error("Action unknown");
   }
@@ -69,7 +85,17 @@ function reducer(state, action) {
 
 export default function App() {
   const [
-    { questions, status, index, answer, points, highscore, secondsRemaining },
+    {
+      questions,
+      status,
+      index,
+      answer,
+      points,
+      highscore,
+      secondsRemaining,
+      choice,
+      choiceID,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
   const numQuestions = questions.length;
@@ -78,56 +104,86 @@ export default function App() {
     0
   );
 
-  useEffect(function () {
-    fetch("http://localhost:8000/questions")
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataReceived", payload: data }))
-      .catch((err) => dispatch({ type: "dataFailed" }));
-  }, []);
+  useEffect(
+    function () {
+      if (choiceID) {
+        fetch(`http://localhost:${choiceID}/questions`)
+          .then((res) => res.json())
+          .then((data) => dispatch({ type: "dataReceived", payload: data }))
+          .catch((err) => dispatch({ type: "dataFailed" }));
+      }
+    },
+    [choiceID]
+  );
 
   return (
     <div className="app">
-      <Header />
-      <Main>
-        {status === "loading" && <Loader />}
-        {status === "error" && <Error />}
-        {status === "ready" && (
-          <StartScreen num={numQuestions} dispatch={dispatch} />
-        )}
-        {status === "active" && (
-          <>
-            <Progress
-              numQuestions={numQuestions}
-              index={index}
-              points={points}
-              maxPossiblePoints={maxPossiblePoints}
-              answer={answer}
-            />
-            <Question
-              question={questions[index]}
-              dispatch={dispatch}
-              answer={answer}
-            />
-            <Footer>
-              <Timer secondsRemaining={secondsRemaining} dispatch={dispatch} />
-              <NextButton
+      {!choice ? (
+        <>
+          <h2 style={{ marginTop: "10px" }}>Choose a framework!</h2>
+          <div className="choices">
+            {quizNames.map((name) => (
+              <>
+                <ChoiceButton
+                  name={name.name}
+                  id={name.id}
+                  dispatch={dispatch}
+                />
+              </>
+            ))}
+          </div>
+        </>
+      ) : null}
+      {choice && (
+        <>
+          <Header name={choice} />
+          <Main>
+            {status === "loading" && <Loader />}
+            {status === "error" && <Error />}
+            {status === "ready" && (
+              <StartScreen num={numQuestions} dispatch={dispatch} />
+            )}
+            {status === "active" && (
+              <>
+                <Progress
+                  numQuestions={numQuestions}
+                  index={index}
+                  points={points}
+                  maxPossiblePoints={maxPossiblePoints}
+                  answer={answer}
+                  choice={choice}
+                />
+                <Question
+                  question={questions[index]}
+                  dispatch={dispatch}
+                  answer={answer}
+                  choice={choice}
+                />
+                <Footer>
+                  <Timer
+                    secondsRemaining={secondsRemaining}
+                    dispatch={dispatch}
+                  />
+                  <NextButton
+                    dispatch={dispatch}
+                    answer={answer}
+                    index={index}
+                    numQuestions={numQuestions}
+                  />
+                </Footer>
+              </>
+            )}
+            {status === "finished" && (
+              <FinishScreen
                 dispatch={dispatch}
-                answer={answer}
-                index={index}
-                numQuestions={numQuestions}
+                points={points}
+                maxPossiblePoints={maxPossiblePoints}
+                highscore={highscore}
               />
-            </Footer>
-          </>
-        )}
-        {status === "finished" && (
-          <FinishScreen
-            dispatch={dispatch}
-            points={points}
-            maxPossiblePoints={maxPossiblePoints}
-            highscore={highscore}
-          />
-        )}
-      </Main>
+            )}
+          </Main>
+        </>
+      )}
     </div>
   );
 }

@@ -1,0 +1,74 @@
+{
+  "questions": [
+    {
+      "question": "Which company developed Angular?",
+      "options": ["Google", "Facebook", "Microsoft", "Twitter"],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "What is the fundamental building block of Angular applications?",
+      "options": ["Modules", "Components", "Services", "Directives"],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "What syntax is used to define the UI in Angular components?",
+      "options": ["TSX", "HTML", "JSX", "Babel"],
+      "correctOption": 1,
+      "points": 10
+    },
+    {
+      "question": "How does data binding occur in Angular?",
+      "options": [
+        "One-way binding",
+        "Two-way binding",
+        "Event binding",
+        "All of the above"
+      ],
+      "correctOption": 3,
+      "points": 10
+    },
+    {
+      "question": "How do you pass data from a parent component to a child component in Angular?",
+      "options": ["@Input", "@Output", "Props", "State"],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "Which lifecycle hook is called after the component’s view has been fully initialized?",
+      "options": ["ngOnInit", "ngAfterViewInit", "ngOnChanges", "ngDoCheck"],
+      "correctOption": 1,
+      "points": 30
+    },
+    {
+      "question": "What service is commonly used for making HTTP requests in Angular?",
+      "options": ["HttpClientModule", "HttpService", "HttpRequest", "Http"],
+      "correctOption": 0,
+      "points": 20
+    },
+    {
+      "question": "Which directive is used to conditionally include or exclude a template in Angular?",
+      "options": ["ngFor", "ngIf", "ngSwitch", "ngClass"],
+      "correctOption": 1,
+      "points": 20
+    },
+    {
+      "question": "How do you define a service in Angular?",
+      "options": [
+        "Using @Injectable",
+        "Using @Component",
+        "Using @Service",
+        "Using @Directive"
+      ],
+      "correctOption": 0,
+      "points": 10
+    },
+    {
+      "question": "Which Angular feature allows you to encapsulate styles at the component level?",
+      "options": ["Shadow DOM", "ViewEncapsulation", "NgStyle", "StyleBinding"],
+      "correctOption": 1,
+      "points": 30
+    }
+  ]
+}
