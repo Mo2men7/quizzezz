@@ -134,7 +134,7 @@ progress.React-progress::-webkit-progress-value {
   border-radius: 100px;
 }
 progress.Angular-progress::-webkit-progress-value {
-  background-color: #ad1010;
+  background-color: #de0032;
   border-radius: 100px;
 }
 progress.Laravel-progress::-webkit-progress-value {
@@ -196,8 +196,8 @@ progress.Laravel-progress::-webkit-progress-value {
 }
 
 .btn-option.Angular-correct {
-  background-color: #ad1010;
-  border: 2px solid #ad1010;
+  background-color: #de0032;
+  border: 2px solid #de0032;
   color: var(--color-light);
 }
 
@@ -223,7 +223,6 @@ progress.Laravel-progress::-webkit-progress-value {
 }
 
 .result {
-  background-color: var(--color-theme);
   color: var(--color-light);
   border-radius: 100px;
   text-align: center;
@@ -231,6 +230,18 @@ progress.Laravel-progress::-webkit-progress-value {
   font-size: 2rem;
   font-weight: 500;
   margin-bottom: 1.6rem;
+}
+
+.result.React {
+  background-color: var(--color-theme);
+}
+
+.result.Angular {
+  background-color: #de0032;
+}
+
+.result.Laravel {
+  background-color: #ff2d20;
 }
 
 .result span {

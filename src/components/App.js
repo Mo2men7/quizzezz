@@ -179,6 +179,7 @@ export default function App() {
                 points={points}
                 maxPossiblePoints={maxPossiblePoints}
                 highscore={highscore}
+                choice={choice}
               />
             )}
           </Main>
