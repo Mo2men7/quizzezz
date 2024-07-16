@@ -1,4 +1,7 @@
-function Header({ name }) {
+import { useQuiz } from "../contexts/QuizContext";
+
+function Header() {
+  const { choice: name } = useQuiz;
   return (
     <header className="app-header">
       <img src={`${name}.png`} alt="React logo" />

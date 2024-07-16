@@ -14,20 +14,7 @@ import ChoiceButton from "./ChoiceButton";
 import { useQuiz } from "../contexts/QuizContext";
 
 export default function App() {
-  const {
-    questions,
-    status,
-    index,
-    answer,
-    points,
-    highscore,
-    secondsRemaining,
-    choice,
-    numQuestions,
-    maxPossiblePoints,
-    quizNames,
-    dispatch,
-  } = useQuiz();
+  const { status, choice, quizNames, dispatch } = useQuiz();
   return (
     <div className="app">
       {!choice ? (
@@ -48,52 +35,22 @@ export default function App() {
       ) : null}
       {choice && (
         <>
-          <Header name={choice} />
+          <Header />
           <Main>
             {status === "loading" && <Loader />}
             {status === "error" && <Error />}
-            {status === "ready" && (
-              <StartScreen num={numQuestions} dispatch={dispatch} />
-            )}
+            {status === "ready" && <StartScreen />}
             {status === "active" && (
               <>
-                <Progress
-                  numQuestions={numQuestions}
-                  index={index}
-                  points={points}
-                  maxPossiblePoints={maxPossiblePoints}
-                  answer={answer}
-                  choice={choice}
-                />
-                <Question
-                  question={questions[index]}
-                  dispatch={dispatch}
-                  answer={answer}
-                  choice={choice}
-                />
+                <Progress />
+                <Question />
                 <Footer>
-                  <Timer
-                    secondsRemaining={secondsRemaining}
-                    dispatch={dispatch}
-                  />
-                  <NextButton
-                    dispatch={dispatch}
-                    answer={answer}
-                    index={index}
-                    numQuestions={numQuestions}
-                  />
+                  <Timer />
+                  <NextButton />
                 </Footer>
               </>
             )}
-            {status === "finished" && (
-              <FinishScreen
-                dispatch={dispatch}
-                points={points}
-                maxPossiblePoints={maxPossiblePoints}
-                highscore={highscore}
-                choice={choice}
-              />
-            )}
+            {status === "finished" && <FinishScreen />}
           </Main>
         </>
       )}
