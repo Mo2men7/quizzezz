@@ -2,9 +2,10 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 
 const QuizContext = createContext();
 const quizNames = [
-  { id: 8000, name: "React" },
-  { id: 8001, name: "Angular" },
-  { id: 8002, name: "Laravel" },
+  { id: "react", name: "React" },
+  { id: "angular", name: "Angular" },
+  { id: "laravel", name: "Laravel" },
+  //we replaced the id from "8000 to "react" after production
 ];
 const initialState = {
   questions: [],
@@ -64,6 +65,7 @@ function reducer(state, action) {
         ...state,
         choice: action.payload.name,
         choiceID: action.payload.id,
+        // choiceID: action.payload.deploymenyId,
       };
     case "backToChoice":
       return { ...initialState };
@@ -95,7 +97,8 @@ function QuizProvider({ children }) {
   useEffect(
     function () {
       if (choiceID) {
-        fetch(`http://localhost:${choiceID}/questions`)
+        // fetch(`http://localhost:${choiceID}/questions`)
+        fetch(`https://quizzezz.vercel.app/api/laravel`)
           .then((res) => res.json())
           .then((data) => dispatch({ type: "dataReceived", payload: data }))
           .catch((err) => dispatch({ type: "dataFailed" }));
